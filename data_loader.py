@@ -32,7 +32,7 @@ def unit_transformer(val, from_, to_):
 		val = val
 	elif from_ == 'p':
 		val = 10**(-val) / 1e-9
-
+	
 	if to_ == 'p':
 		val = -np.log10(val*1e-9 + 1e-10)
 	elif to_ == 'nM':
@@ -44,6 +44,19 @@ def unit_transformer(val, from_, to_):
 # ##################################################
 # ########### Common Benchmarks ####################
 # ##################################################
+
+def load_DrugBank(path='./data'):
+	"""Intrinsic Binary"""
+	print('Loading Dataset from ' + path + '/DrugBank')
+	drug_path = path + '/DrugBank/drugs.json'
+	target_path = path + '/DrugBank/targets.json'
+	with open(drug_path, 'r') as f:
+		drugs = json.load(f)
+	with open(target_path, 'r') as f:
+		targets = json.load(f)
+	
+	print('Done!')
+	return np.array(drugs), np.array(targets)
 
 
 
